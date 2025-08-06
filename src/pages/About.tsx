@@ -40,7 +40,7 @@ const About: React.FC = () => {
       description: "La quête permanente de la perfection dans nos services",
       engagement: "Nous nous engageons à délivrer des prestations de la plus haute qualité, en nous appuyant sur notre expertise et notre expérience",
       icon: HiOutlineStar,
-      color: "from-amber-500 to-orange-500"
+      color: "from-black to-gray-800"
     },
     {
       title: "Élégance",
@@ -107,7 +107,7 @@ const About: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section ref={heroRef} className="py-20 bg-gradient-to-br from-white via-gray-50 to-amber-50">
+      <section ref={heroRef} className="py-20 bg-gradient-to-br from-white via-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -165,10 +165,10 @@ const About: React.FC = () => {
             
             <motion.div 
               variants={itemVariants}
-              className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12"
+              className="bg-gray-50 rounded-2xl p-8 md:p-12"
             >
               <div className="flex items-start mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                                  <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
                   <HiOutlineHeart className="w-8 h-8 text-white" />
                 </div>
                 <div>
@@ -197,7 +197,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section ref={missionRef} className="section-gradient">
+      <section ref={missionRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -329,7 +329,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Vision Section */}
-      <section ref={visionRef} className="py-20 bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 text-white overflow-hidden relative">
+              <section ref={visionRef} className="py-20 bg-black text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -369,7 +369,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section ref={statsRef} className="section-gradient">
+      <section ref={statsRef} className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -430,7 +430,7 @@ const About: React.FC = () => {
                 </Link>
                 <Link
                   to="/prestations"
-                  className="bg-white border-2 border-amber-500 text-amber-600 px-8 py-4 rounded-full font-semibold hover:bg-amber-50 transition-all duration-300 inline-flex items-center justify-center"
+                  className="bg-white border-2 border-black text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 inline-flex items-center justify-center"
                 >
                   Voir nos solutions
                 </Link>

@@ -4,7 +4,7 @@
 
 /* Vos styles personnalisés */
 .btn-primary {
-  @apply bg-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300;
+  @apply bg-black text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300;
 }
 
 .card-standard {
@@ -12,9 +12,9 @@
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-purple-600 to-amber-500 bg-clip-text text-transparent;
+  @apply text-black font-bold;
 }
 
 .section-gradient {
-  @apply py-20 bg-gradient-to-br from-gray-50 via-purple-50 to-amber-50;
+  @apply py-20 bg-gradient-to-br from-white via-gray-50 to-gray-100;
 }

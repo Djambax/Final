@@ -117,7 +117,7 @@ const Contact: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section ref={heroRef} className="py-20 bg-gradient-to-br from-white via-gray-50 to-amber-50">
+      <section ref={heroRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -318,7 +318,7 @@ const Contact: React.FC = () => {
         </section>
 
         {/* Contact Info */}
-        <section ref={infoRef} className="py-20 bg-gradient-to-br from-gray-50 to-amber-50">
+        <section ref={infoRef} className="py-20 bg-gray-50">
           <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={containerVariants}
@@ -338,12 +338,12 @@ const Contact: React.FC = () => {
               >
                 {/* Email */}
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                      <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
                     <HiOutlineMail className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                    <a href={`mailto:${contactInfo.email}`} className="text-amber-600 hover:text-amber-700 transition-colors">
+                                          <a href={`mailto:${contactInfo.email}`} className="text-black hover:text-gray-700 transition-colors">
                       {contactInfo.email}
                     </a>
                     <p className="text-gray-600 text-sm mt-1">

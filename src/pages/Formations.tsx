@@ -29,6 +29,7 @@ const Formations: React.FC = () => {
       title: "Business & Entrepreneuriat",
       icon: HiOutlineChartBar,
       color: "from-blue-500 to-blue-600",
+      image: "/src/assets/shutterstock_2598931365.jpg",
       modules: [
         "Création d'entreprise : de l'idée au lancement",
         "Construire un business model et business plan efficace", 
@@ -43,6 +44,7 @@ const Formations: React.FC = () => {
       title: "Marketing & Communication",
       icon: HiOutlineSpeakerphone,
       color: "from-purple-500 to-purple-600",
+      image: "/src/assets/shutterstock_2605610799.jpg",
       modules: [
         "Marketing digital (réseaux sociaux, SEO, publicité en ligne)",
         "Communication de marque et identité visuelle",
@@ -58,6 +60,7 @@ const Formations: React.FC = () => {
       title: "Vente & Animation commerciale",
       icon: HiOutlineShoppingCart,
       color: "from-green-500 to-green-600",
+      image: "/src/assets/shutterstock_2589155169.jpg",
       modules: [
         "Techniques de vente et négociation client",
         "Animation de point de vente & merchandising", 
@@ -72,6 +75,7 @@ const Formations: React.FC = () => {
       title: "Gestion d'entreprise & Administrative",
       icon: HiOutlineCalculator,
       color: "from-indigo-500 to-indigo-600",
+      image: "/src/assets/shutterstock_2543158437.jpg",
       modules: [
         "Bases de la comptabilité pour non-comptables",
         "Organisation administrative de l'entreprise",
@@ -100,6 +104,7 @@ const Formations: React.FC = () => {
       title: "Formations sur mesure & accompagnement",
       icon: HiOutlineCog,
       color: "from-gray-500 to-gray-600",
+      image: "/src/assets/shutterstock_2622093339.jpg",
       modules: [
         "Diagnostic des besoins de montée en compétences",
         "Élaboration programme individualisé",
@@ -115,7 +120,8 @@ const Formations: React.FC = () => {
     {
       title: "Intelligence Artificielle en entreprise",
       icon: HiOutlineLightningBolt,
-      color: "from-amber-500 to-orange-500",
+      color: "from-black to-gray-800",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Introduction à l'IA et ses applications business",
         "Outils IA pour la productivité",
@@ -168,7 +174,7 @@ const Formations: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Hero Formations */}
-      <section ref={heroRef} className="py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50">
+      <section ref={heroRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -209,7 +215,7 @@ const Formations: React.FC = () => {
       </section>
 
       {/* Formations Grid Section */}
-      <section ref={formationsRef} className="py-20 bg-white">
+      <section ref={formationsRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -236,43 +242,54 @@ const Formations: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="card-standard group cursor-pointer"
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer"
+                style={{
+                  backgroundImage: formation.image ? `url(${formation.image})` : 'none',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
               >
-                <div className="flex items-start mb-6">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${formation.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mr-4 flex-shrink-0`}>
-                    <formation.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      {formation.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <HiOutlineClock className="w-4 h-4 mr-1" />
-                        {formation.duree}
-                      </div>
-                      <div className="flex items-center">
-                        <HiOutlineDesktopComputer className="w-4 h-4 mr-1" />
-                        {formation.format}
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/70 group-hover:bg-black/60 transition-all duration-300"></div>
+                
+                {/* Content */}
+                <div className="relative z-10 p-6">
+                  <div className="flex items-start mb-6">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${formation.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mr-4 flex-shrink-0`}>
+                      <formation.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {formation.title}
+                      </h3>
+                      <div className="flex flex-wrap gap-4 text-sm text-gray-300">
+                        <div className="flex items-center">
+                          <HiOutlineClock className="w-4 h-4 mr-1" />
+                          {formation.duree}
+                        </div>
+                        <div className="flex items-center">
+                          <HiOutlineDesktopComputer className="w-4 h-4 mr-1" />
+                          {formation.format}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900 mb-4">Modules inclus :</h4>
-                  {formation.modules.map((module, moduleIndex) => (
-                    <div key={moduleIndex} className="flex items-start">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 leading-relaxed">{module}</span>
-                    </div>
-                  ))}
-                </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-white mb-4">Modules inclus :</h4>
+                    {formation.modules.map((module, moduleIndex) => (
+                      <div key={moduleIndex} className="flex items-start">
+                        <HiOutlineCheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-200 leading-relaxed">{module}</span>
+                      </div>
+                    ))}
+                  </div>
 
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <button className="w-full bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:from-amber-500 hover:to-orange-500 hover:text-white transition-all duration-300">
-                    Demander plus d'informations
-                  </button>
+                  <div className="mt-8 pt-6 border-t border-gray-600">
+                    <button className="w-full bg-white text-black py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300">
+                      Demander plus d'informations
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -281,7 +298,7 @@ const Formations: React.FC = () => {
       </section>
 
       {/* Modalités Section */}
-      <section ref={modalitesRef} className="section-gradient">
+      <section ref={modalitesRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -336,7 +353,7 @@ const Formations: React.FC = () => {
             animate={isModalitesInView ? "visible" : "hidden"}
             className="text-center"
           >
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8 max-w-4xl mx-auto">
+            <div className="bg-gray-100 border border-gray-200 rounded-2xl p-8 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Formation sur mesure ?
               </h3>

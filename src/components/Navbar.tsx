@@ -44,29 +44,29 @@ const Navbar: React.FC<NavbarProps> = () => {
             : 'backdrop-blur-sm bg-white/80 shadow-lg'
         } rounded-full px-8 py-4`}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center space-x-6">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold">
             NOVA <span className="gradient-text">IMPÉRIA</span>
           </Link>
 
           {/* Navigation Desktop */}
-          <div className="hidden md:flex items-center space-x-8 ml-12">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className={`relative text-sm font-medium transition-colors duration-300 ${
                   isActiveItem(item.path)
-                    ? 'text-amber-500'
-                    : 'text-gray-700 hover:text-amber-500'
+                    ? 'text-black'
+                    : 'text-gray-700 hover:text-black'
                 }`}
               >
                 {item.label}
                 {isActiveItem(item.path) && (
                   <motion.div
                     layoutId="activeIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black rounded-full"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -75,17 +75,22 @@ const Navbar: React.FC<NavbarProps> = () => {
             ))}
           </div>
 
+          {/* Se connecter */}
+          <button className="hidden md:block text-gray-700 hover:text-black font-medium text-sm transition-colors duration-300">
+            Se connecter
+          </button>
+
           {/* Bouton Prestations */}
           <Link
             to="/prestations"
-            className="hidden md:block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ml-8"
+            className="hidden md:block bg-black text-white px-6 py-2 rounded-full text-sm font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             Prestations
           </Link>
 
-          {/* Bouton Connexion */}
-          <button className="hidden md:block text-gray-700 hover:text-amber-500 font-medium text-sm ml-4 transition-colors duration-300">
-            Connexion
+          {/* Panier */}
+          <button className="hidden md:block text-gray-700 hover:text-black font-medium text-sm transition-colors duration-300">
+            Panier
           </button>
 
           {/* Mobile Menu Button */}
@@ -130,22 +135,31 @@ const Navbar: React.FC<NavbarProps> = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block text-lg font-medium transition-colors duration-300 ${
                         isActiveItem(item.path)
-                          ? 'text-amber-500'
-                          : 'text-gray-700 hover:text-amber-500'
+                          ? 'text-black'
+                          : 'text-gray-700 hover:text-black'
                       }`}
                     >
                       {item.label}
                     </Link>
                   ))}
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-left text-gray-700 hover:text-black font-medium mt-4 transition-colors duration-300"
+                  >
+                    Se connecter
+                  </button>
                   <Link
                     to="/prestations"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full text-center font-semibold mt-8"
+                    className="block bg-black text-white px-6 py-3 rounded-full text-center font-semibold mt-4"
                   >
                     Prestations
                   </Link>
-                  <button className="block w-full text-left text-gray-700 hover:text-amber-500 font-medium mt-4 transition-colors duration-300">
-                    Connexion
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-left text-gray-700 hover:text-black font-medium mt-4 transition-colors duration-300"
+                  >
+                    Panier
                   </button>
                 </div>
               </div>

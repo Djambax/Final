@@ -162,7 +162,7 @@ const Prestations: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Hero */}
-      <section ref={heroRef} className="py-20 bg-gradient-to-br from-white via-gray-50 to-purple-50">
+      <section ref={heroRef} className="py-20 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={containerVariants}
@@ -171,21 +171,21 @@ const Prestations: React.FC = () => {
           >
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
             >
-              Nos <span className="gradient-text">prestations</span>
+              Nos <span className="text-white">prestations</span>
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
             >
               Des solutions complètes pour accompagner votre développement
             </motion.p>
             
             <motion.p 
               variants={itemVariants}
-              className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto"
+              className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
             >
               Que vous soyez un organisme de formation ou une entreprise, nous vous proposons des packs adaptés à vos besoins spécifiques
             </motion.p>
@@ -203,7 +203,7 @@ const Prestations: React.FC = () => {
       </section>
 
       {/* Prestations Organismes de Formation */}
-      <section ref={prestationsOFRef} className="py-20 bg-white">
+      <section ref={prestationsOFRef} className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -211,10 +211,10 @@ const Prestations: React.FC = () => {
             animate={isPrestationsOFInView ? "visible" : "hidden"}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-6">
               Pour les Organismes de Formation
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.p variants={itemVariants} className="text-xl text-gray-300 max-w-3xl mx-auto">
               Accompagnement complet pour créer, structurer et développer votre organisme de formation
             </motion.p>
           </motion.div>
@@ -230,8 +230,8 @@ const Prestations: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className={`relative card-standard ${
-                  prestation.popular ? 'ring-2 ring-purple-500 transform scale-105' : ''
+                className={`relative bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${
+                  prestation.popular ? 'ring-2 ring-white transform scale-105' : ''
                 }`}
               >
                 {prestation.popular && (
@@ -243,14 +243,14 @@ const Prestations: React.FC = () => {
                 )}
 
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl font-bold text-white mb-2">
                     {prestation.title}
                   </h3>
-                  <div className="text-3xl font-bold text-purple-600 mb-4">
+                  <div className="text-3xl font-bold text-white mb-4">
                     {prestation.price}
                   </div>
                   
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-6">
                     <div className="flex items-center">
                       <HiOutlineClock className="w-4 h-4 mr-1" />
                       {prestation.delai}
@@ -265,16 +265,16 @@ const Prestations: React.FC = () => {
                 <div className="space-y-4 mb-8">
                   {prestation.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-start">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600 leading-relaxed">{feature}</span>
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-300 leading-relaxed">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <button className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
                   prestation.popular
-                    ? 'btn-primary'
-                    : 'bg-gray-100 text-gray-700 hover:bg-purple-500 hover:text-white'
+                    ? 'bg-white text-black hover:bg-gray-100'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
                 }`}>
                   Demander un devis
                 </button>
@@ -285,7 +285,7 @@ const Prestations: React.FC = () => {
       </section>
 
       {/* Prestations Entreprises */}
-      <section ref={prestationsEntreprisesRef} className="section-gradient">
+      <section ref={prestationsEntreprisesRef} className="py-20 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -293,10 +293,10 @@ const Prestations: React.FC = () => {
             animate={isPrestationsEntreprisesInView ? "visible" : "hidden"}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-6">
               Pour les Entreprises
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.p variants={itemVariants} className="text-xl text-gray-300 max-w-3xl mx-auto">
               Solutions adaptées à tous types d'entreprises pour votre développement et votre croissance
             </motion.p>
           </motion.div>
@@ -312,29 +312,29 @@ const Prestations: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className={`relative card-standard text-center ${
-                  prestation.popular ? 'ring-2 ring-amber-500 transform scale-105' : ''
+                className={`relative bg-gray-800 border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center ${
+                  prestation.popular ? 'ring-2 ring-white transform scale-105' : ''
                 }`}
               >
                 {prestation.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Recommandé
-                    </span>
+                                          <span className="bg-white text-black px-4 py-1 rounded-full text-sm font-semibold">
+                        Recommandé
+                      </span>
                   </div>
                 )}
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-white mb-4">
                   {prestation.title}
                 </h3>
-                <div className="text-3xl font-bold text-amber-600 mb-6">
+                <div className="text-3xl font-bold text-white mb-6">
                   {prestation.price}
                 </div>
                 
                 <ul className="space-y-3 mb-8">
                   {prestation.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center justify-center text-gray-600">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
+                    <li key={featureIndex} className="flex items-center justify-center text-gray-300">
+                      <HiOutlineCheckCircle className="w-5 h-5 text-green-400 mr-2 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -342,8 +342,8 @@ const Prestations: React.FC = () => {
                 
                 <button className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
                   prestation.popular
-                    ? 'btn-primary'
-                    : 'bg-gray-100 text-gray-700 hover:bg-amber-500 hover:text-white'
+                    ? 'bg-white text-black hover:bg-gray-100'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
                 }`}>
                   En savoir plus
                 </button>
@@ -354,7 +354,7 @@ const Prestations: React.FC = () => {
       </section>
 
       {/* Processus Section */}
-      <section ref={processusRef} className="py-20 bg-white">
+      <section ref={processusRef} className="py-20 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -362,10 +362,10 @@ const Prestations: React.FC = () => {
             animate={isProcessusInView ? "visible" : "hidden"}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-6">
               Notre processus d'accompagnement
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.p variants={itemVariants} className="text-xl text-gray-300 max-w-3xl mx-auto">
               6 étapes pour garantir le succès de votre projet
             </motion.p>
           </motion.div>
@@ -381,23 +381,23 @@ const Prestations: React.FC = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="card-standard text-center group relative"
+                className="bg-gray-700 border border-gray-600 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center group relative"
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-white flex items-center justify-center text-black text-2xl font-bold group-hover:scale-110 transition-transform duration-300">
                   {step.step}
                 </div>
                 
-                <step.icon className="w-12 h-12 mx-auto mb-4 text-gray-400 group-hover:text-amber-500 transition-colors duration-300" />
+                <step.icon className="w-12 h-12 mx-auto mb-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-white mb-3">
                   {step.title}
                 </h3>
                 
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-gray-300 mb-4 leading-relaxed">
                   {step.description}
                 </p>
                 
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-sm font-medium">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-600 text-white text-sm font-medium">
                   <HiOutlineClock className="w-4 h-4 mr-1" />
                   {step.duration}
                 </div>
@@ -419,23 +419,23 @@ const Prestations: React.FC = () => {
             animate={isProcessusInView ? "visible" : "hidden"}
             className="text-center mt-16"
           >
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-gray-700 border border-gray-600 rounded-2xl p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 Prêt à démarrer votre projet ?
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-300 mb-6 leading-relaxed">
                 Commençons par un diagnostic gratuit de 30 minutes pour comprendre vos besoins et vous proposer la solution la plus adaptée.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/contact"
-                  className="btn-primary inline-flex items-center justify-center"
+                  className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center"
                 >
                   Planifier mon diagnostic gratuit
                 </Link>
                 <Link
                   to="/contact"
-                  className="bg-white border-2 border-amber-500 text-amber-600 px-8 py-4 rounded-full font-semibold hover:bg-amber-50 transition-all duration-300 inline-flex items-center justify-center"
+                  className="bg-gray-600 border-2 border-gray-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-500 transition-all duration-300 inline-flex items-center justify-center"
                 >
                   Poser une question
                 </Link>

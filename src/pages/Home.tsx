@@ -92,7 +92,7 @@ const Home: React.FC = () => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-amber-50">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
         {/* Background Animated Orbs */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
               </Link>
               <Link
                 to="/prestations"
-                className="bg-white border-2 border-amber-500 text-amber-600 px-8 py-4 rounded-full font-semibold hover:bg-amber-50 transition-all duration-300 inline-flex items-center justify-center text-lg"
+                className="bg-white border-2 border-black text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 inline-flex items-center justify-center text-lg"
               >
                 Nos prestations
               </Link>
@@ -173,9 +173,9 @@ const Home: React.FC = () => {
             >
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-amber-600 mb-2">
-                    {stat.number}
-                  </div>
+                                  <div className="text-3xl md:text-4xl font-bold text-black mb-2">
+                  {stat.number}
+                </div>
                   <div className="text-gray-600">{stat.label}</div>
                 </div>
               ))}
@@ -185,7 +185,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Formations Preview Section */}
-      <section ref={formationsRef} className="section-gradient">
+      <section ref={formationsRef} className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
@@ -291,7 +291,7 @@ const Home: React.FC = () => {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {prestation.title}
                 </h3>
-                <div className="text-3xl font-bold text-amber-600 mb-6">
+                <div className="text-3xl font-bold text-black mb-6">
                   {prestation.price}
                 </div>
                 
@@ -332,7 +332,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Final Section */}
-      <section ref={ctaRef} className="py-20 bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 text-white overflow-hidden relative">
+      <section ref={ctaRef} className="py-20 bg-black text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -361,13 +361,13 @@ const Home: React.FC = () => {
             >
               <Link
                 to="/contact"
-                className="bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-lg"
+                className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-lg"
               >
                 Demander un devis gratuit
               </Link>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition-all duration-300 inline-flex items-center justify-center text-lg"
+                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300 inline-flex items-center justify-center text-lg"
               >
                 Planifier un appel
               </Link>
