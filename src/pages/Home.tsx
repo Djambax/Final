@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { 
   HiOutlineChartBar, 
@@ -9,6 +9,38 @@ import {
   HiOutlineCheckCircle,
   HiOutlineStar
 } from 'react-icons/hi'
+
+// Composant pour les compteurs animés
+const AnimatedCounter: React.FC<{ target: number; suffix: string; isInView: boolean }> = ({ target, suffix, isInView }) => {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) return
+
+    const duration = 2000 // 2 secondes
+    const steps = 60
+    const increment = target / steps
+    let current = 0
+
+    const timer = setInterval(() => {
+      current += increment
+      if (current >= target) {
+        setCount(target)
+        clearInterval(timer)
+      } else {
+        setCount(Math.floor(current))
+      }
+    }, duration / steps)
+
+    return () => clearInterval(timer)
+  }, [target, isInView])
+
+  return (
+    <span className="text-3xl md:text-4xl font-bold text-black">
+      {count}{suffix}
+    </span>
+  )
+}
 
 const Home: React.FC = () => {
   const heroRef = useRef(null)
@@ -71,9 +103,9 @@ const Home: React.FC = () => {
   ]
 
   const stats = [
-    { number: "500+", label: "entrepreneurs accompagnés" },
-    { number: "95%", label: "taux de satisfaction" },
-    { number: "7", label: "domaines d'expertise" }
+    { target: 500, suffix: "+", label: "entrepreneurs accompagnés" },
+    { target: 95, suffix: "%", label: "taux de satisfaction" },
+    { target: 7, suffix: "", label: "domaines d'expertise" }
   ]
 
   const containerVariants = {
@@ -166,18 +198,27 @@ const Home: React.FC = () => {
               </Link>
             </motion.div>
 
-            {/* Stats */}
+                        {/* Stats */}
             <motion.div 
               variants={itemVariants}
               className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto"
             >
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                                  <div className="text-3xl md:text-4xl font-bold text-black mb-2">
-                  {stat.number}
-                </div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </div>
+                <motion.div 
+                  key={index} 
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="mb-2">
+                    <AnimatedCounter 
+                      target={stat.target} 
+                      suffix={stat.suffix} 
+                      isInView={isHeroInView} 
+                    />
+                  </div>
+                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
@@ -275,16 +316,24 @@ const Home: React.FC = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className={`relative card-standard text-center ${
-                  prestation.popular ? 'ring-2 ring-amber-500 transform scale-105' : ''
+                whileHover={{ 
+                  y: -10, 
+                  scale: 1.03,
+                  rotateY: 5,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+                }}
+                className={`relative card-standard text-center transition-all duration-300 ${
+                  prestation.popular ? 'ring-2 ring-black transform scale-105' : ''
                 }`}
+                style={{
+                  transformStyle: 'preserve-3d'
+                }}
               >
                 {prestation.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Populaire
-                    </span>
+                                          <span className="bg-black text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Populaire
+                      </span>
                   </div>
                 )}
                 

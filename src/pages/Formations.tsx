@@ -29,7 +29,7 @@ const Formations: React.FC = () => {
       title: "Business & Entrepreneuriat",
       icon: HiOutlineChartBar,
       color: "from-blue-500 to-blue-600",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2598931365.jpg",
       modules: [
         "Création d'entreprise : de l'idée au lancement",
         "Construire un business model et business plan efficace", 
@@ -44,7 +44,7 @@ const Formations: React.FC = () => {
       title: "Marketing & Communication",
       icon: HiOutlineSpeakerphone,
       color: "from-purple-500 to-purple-600",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2605610799.jpg",
       modules: [
         "Marketing digital (réseaux sociaux, SEO, publicité en ligne)",
         "Communication de marque et identité visuelle",
@@ -60,7 +60,7 @@ const Formations: React.FC = () => {
       title: "Vente & Animation commerciale",
       icon: HiOutlineShoppingCart,
       color: "from-green-500 to-green-600",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2589155169.jpg",
       modules: [
         "Techniques de vente et négociation client",
         "Animation de point de vente & merchandising", 
@@ -75,7 +75,7 @@ const Formations: React.FC = () => {
       title: "Gestion d'entreprise & Administrative",
       icon: HiOutlineCalculator,
       color: "from-indigo-500 to-indigo-600",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2543158437.jpg",
       modules: [
         "Bases de la comptabilité pour non-comptables",
         "Organisation administrative de l'entreprise",
@@ -104,7 +104,7 @@ const Formations: React.FC = () => {
       title: "Formations sur mesure & accompagnement",
       icon: HiOutlineCog,
       color: "from-gray-500 to-gray-600",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2622093339.jpg",
       modules: [
         "Diagnostic des besoins de montée en compétences",
         "Élaboration programme individualisé",
@@ -121,7 +121,7 @@ const Formations: React.FC = () => {
       title: "Intelligence Artificielle en entreprise",
       icon: HiOutlineLightningBolt,
       color: "from-black to-gray-800",
-      image: "/src/assets/shutterstock_2574472231.jpg",
+      image: "/shutterstock_2574472231.jpg",
       modules: [
         "Introduction à l'IA et ses applications business",
         "Outils IA pour la productivité",
@@ -241,16 +241,27 @@ const Formations: React.FC = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer"
+                whileHover={{ 
+                  y: -12, 
+                  scale: 1.03,
+                  rotateY: 5,
+                  rotateX: 5,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.25)"
+                }}
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer transition-all duration-500"
                 style={{
                   backgroundImage: formation.image ? `url(${formation.image})` : 'none',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px'
                 }}
               >
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/70 group-hover:bg-black/60 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-all duration-500"></div>
+                
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
                 {/* Content */}
                 <div className="relative z-10 p-6">
