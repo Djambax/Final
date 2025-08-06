@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { 
   HiOutlineCheckCircle,
   HiOutlineClipboardList,
-  HiOutlineLightbulb,
+  HiOutlineLightningBolt,
   HiOutlineUserGroup,
   HiOutlineCog,
   HiOutlineGift,
@@ -113,7 +113,7 @@ const Prestations: React.FC = () => {
       step: "2", 
       title: "Proposition personnalisée",
       description: "Nous vous envoyons un devis détaillé adapté à votre projet",
-      icon: HiOutlineLightbulb,
+      icon: HiOutlineLightningBolt,
       duration: "48h"
     },
     {

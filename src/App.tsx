@@ -6,6 +6,9 @@ import Formations from './pages/Formations'
 import Prestations from './pages/Prestations'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import './index.css' // ← Ou ici
+
+
 
 function App() {
   return (

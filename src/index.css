@@ -2,69 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Couleurs primaires */
-  --white: #FFFFFF;
-  --gray-50: #F9FAFB;
-  --gray-100: #F3F4F6;
-  --gray-900: #111827;
-  
-  /* Couleurs d'accent */
-  --amber-400: #FBBF24;
-  --amber-500: #F59E0B;
-  --orange-500: #F97316;
-  --orange-600: #EA580C;
-}
-
-/* Styles de base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--white);
-  color: var(--gray-900);
-  line-height: 1.6;
-}
-
-/* Utilités pour les animations */
-.smooth-transition {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Gradient text pour NOVA IMPÉRIA */
-.gradient-text {
-  background: linear-gradient(135deg, var(--amber-500), var(--orange-500));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Cards standards */
-.card-standard {
-  @apply bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Boutons primaires */
+/* Vos styles personnalisés */
 .btn-primary {
-  @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-full font-semibold;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @apply bg-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+.card-standard {
+  @apply bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300;
 }
 
-/* Sections */
+.gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-amber-500 bg-clip-text text-transparent;
+}
+
 .section-gradient {
-  @apply py-20 bg-gradient-to-b from-white to-gray-50;
+  @apply py-20 bg-gradient-to-br from-gray-50 via-purple-50 to-amber-50;
 }
