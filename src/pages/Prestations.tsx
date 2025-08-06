@@ -17,7 +17,7 @@ import {
   HiOutlineSupport,
   HiOutlineSearchCircle,
   HiOutlineDocumentText,
-  HiOutlineCheckBadge,
+  HiOutlineCheck,
   HiOutlinePlay,
   HiOutlineTruck,
   HiOutlineChat
@@ -128,7 +128,7 @@ const Prestations: React.FC = () => {
       step: 3,
       title: "Validation et planning",
       description: "Finalisation des détails, signature du contrat et planification des étapes avec points de validation réguliers.",
-      icon: HiOutlineCheckBadge,
+      icon: HiOutlineCheck,
       duration: "1 semaine",
       progress: 95
     },

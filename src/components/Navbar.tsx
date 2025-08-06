@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiOutlineMenu, HiOutlineX, HiOutlineShoppingBag } from 'react-icons/hi'
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
 
 // Icônes stylées
 const HomeIcon = () => (
@@ -43,12 +43,13 @@ const Navbar: React.FC<NavbarProps> = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
 
+  // Fixed: Pass component functions instead of JSX elements
   const navItems = [
-    { label: 'Accueil', path: '/', icon: <HomeIcon /> },
-    { label: 'Qui sommes-nous', path: '/qui-sommes-nous', icon: <UsersIcon /> },
-    { label: 'Nos formations', path: '/formations', icon: <BookIcon /> },
-    { label: 'Prestations', path: '/prestations', icon: <ServicesIcon /> },
-    { label: 'Contact', path: '/contact', icon: <ContactIcon /> },
+    { label: 'Accueil', path: '/', icon: HomeIcon },
+    { label: 'Qui sommes-nous', path: '/qui-sommes-nous', icon: UsersIcon },
+    { label: 'Nos formations', path: '/formations', icon: BookIcon },
+    { label: 'Prestations', path: '/prestations', icon: ServicesIcon },
+    { label: 'Contact', path: '/contact', icon: ContactIcon },
   ]
 
   useEffect(() => {
@@ -101,94 +102,77 @@ const Navbar: React.FC<NavbarProps> = () => {
           </motion.div>
 
           {/* Navigation Desktop */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.path}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <Link
-                  to={item.path}
-                  className={`group relative flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    isActiveItem(item.path)
-                      ? 'text-black bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg'
-                      : 'text-gray-700 hover:text-black hover:bg-yellow-50'
-                  }`}
+          <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+            {navItems.map((item, index) => {
+              const IconComponent = item.icon; // Get the component function
+              return (
+                <motion.div
+                  key={item.path}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
-                  {/* Icône avec animation */}
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  <Link
+                    to={item.path}
+                    className={`group relative flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                      isActiveItem(item.path)
+                        ? 'text-black bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg'
+                        : 'text-gray-700 hover:text-black hover:bg-yellow-50'
+                    }`}
                   >
-                    <item.icon className={`w-4 h-4 ${
-                      isActiveItem(item.path) ? 'text-black' : 'text-gray-500 group-hover:text-yellow-600'
-                    }`} />
-                  </motion.div>
-                  
-                  <span className="relative">
-                    {item.label}
-                    {/* Effet de soulignement animé */}
-                    {isActiveItem(item.path) && (
+                    {/* Icône avec animation */}
+                    <motion.div
+                      className={`transition-all duration-300 ${
+                        isActiveItem(item.path) ? 'text-black' : 'text-gray-500 group-hover:text-yellow-600'
+                      }`}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <IconComponent />
+                    </motion.div>
+                    
+                    {/* Texte */}
+                    <span className="whitespace-nowrap">{item.label}</span>
+
+                    {/* Effet de hover - bulle */}
+                    {!isActiveItem(item.path) && (
                       <motion.div
-                        layoutId="navbar-underline"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black rounded-full"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        className="absolute inset-0 bg-yellow-50/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        whileHover={{ scale: 1.02 }}
                       />
                     )}
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
+
+                    {/* Indicateur actif avec gradient jaune */}
+                    {isActiveItem(item.path) && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl shadow-lg"
+                        style={{ zIndex: -1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+
+                    {/* Effet de soulignement animé pour les items non-actifs */}
+                    {!isActiveItem(item.path) && (
+                      <span className="relative">
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow-500 rounded-full opacity-0 group-hover:opacity-100"
+                          transition={{ duration: 0.3 }}
+                        />
+                      </span>
+                    )}
+                  </Link>
+                </motion.div>
+              )
+            })}
           </div>
 
-          {/* Boutons d'action */}
-          <div className="hidden lg:flex items-center space-x-3">
-            
-            {/* Se connecter */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-gray-700 hover:text-yellow-600 font-semibold text-sm transition-all duration-300 px-4 py-2 rounded-lg hover:bg-yellow-50"
-            >
-              Se connecter
-            </motion.button>
 
-            {/* Bouton Prestations premium */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/prestations"
-                className="btn-primary text-sm px-6 py-3"
-              >
-                Prestations
-              </Link>
-            </motion.div>
-
-            {/* Panier avec compteur */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative text-gray-700 hover:text-yellow-600 font-semibold text-sm transition-all duration-300 px-4 py-2 rounded-lg hover:bg-yellow-50"
-            >
-              <div className="flex items-center space-x-2">
-                <HiOutlineShoppingBag className="w-5 h-5" />
-                <span>Panier</span>
-                {/* Badge compteur */}
-                <span className="absolute -top-1 -right-1 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  0
-                </span>
-              </div>
-            </motion.button>
-          </div>
 
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-xl transition-all duration-300"
+            className="lg:hidden p-2 text-gray-600 hover:text-black hover:bg-gray-100 rounded-xl transition-all duration-300 flex-shrink-0"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Menu mobile"
@@ -234,10 +218,10 @@ const Navbar: React.FC<NavbarProps> = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="text-xl font-black tracking-tight"
                   >
-                    <span className="bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">
+                    <span className="text-black">
                       NOVA
                     </span>
-                    <span className="ml-1 bg-gradient-to-r from-gray-700 to-gray-500 bg-clip-text text-transparent">
+                    <span className="ml-1 gradient-text" data-text="IMPÉRIA">
                       IMPÉRIA
                     </span>
                   </Link>
@@ -245,35 +229,40 @@ const Navbar: React.FC<NavbarProps> = () => {
 
                 {/* Navigation mobile */}
                 <div className="space-y-2">
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.path}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                    >
-                      <Link
-                        to={item.path}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`group flex items-center space-x-4 p-4 rounded-xl text-lg font-semibold transition-all duration-300 ${
-                          isActiveItem(item.path)
-                            ? 'text-white bg-gradient-to-r from-black to-gray-800 shadow-lg'
-                            : 'text-gray-700 hover:text-black hover:bg-gray-100'
-                        }`}
+                  {navItems.map((item, index) => {
+                    const IconComponent = item.icon; // Get the component function
+                    return (
+                      <motion.div
+                        key={item.path}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
                       >
-                        <motion.div
-                          className={`transition-colors duration-300 ${
-                            isActiveItem(item.path) ? 'text-white' : 'text-gray-500 group-hover:text-black'
+                        <Link
+                          to={item.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`group flex items-center space-x-4 p-4 rounded-xl text-lg font-semibold transition-all duration-300 ${
+                            isActiveItem(item.path)
+                              ? 'text-black bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg'
+                              : 'text-gray-700 hover:text-black hover:bg-yellow-50'
                           }`}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
                         >
-                          {item.icon}
-                        </motion.div>
-                        <span>{item.label}</span>
-                      </Link>
-                    </motion.div>
-                  ))}
+                          <motion.div
+                            className={`transition-colors duration-300 ${
+                              isActiveItem(item.path) ? 'text-black' : 'text-gray-500 group-hover:text-yellow-600'
+                            }`}
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                          >
+                            <IconComponent />
+                          </motion.div>
+                          <span>{item.label}</span>
+                        </Link>
+                      </motion.div>
+                    )
+                  })}
                 </div>
+
+                {/* Boutons d'action mobile - supprimés */}
 
                 {/* Footer du menu mobile */}
                 <div className="mt-8 pt-6 border-t border-gray-200">

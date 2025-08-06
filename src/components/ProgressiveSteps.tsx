@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
-import { IconType } from 'react-icons'
+import type { IconType } from 'react-icons'
 
 interface StepData {
   step: number
