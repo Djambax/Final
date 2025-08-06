@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import ProgressiveSteps from '../components/ProgressiveSteps'
 import { 
   HiOutlineCheckCircle,
   HiOutlineClipboardList,
@@ -13,19 +14,23 @@ import {
   HiOutlineDesktopComputer,
   HiOutlineGlobe,
   HiOutlineChartBar,
-  HiOutlineSupport
+  HiOutlineSupport,
+  HiOutlineSearchCircle,
+  HiOutlineDocumentText,
+  HiOutlineCheckBadge,
+  HiOutlinePlay,
+  HiOutlineTruck,
+  HiOutlineChat
 } from 'react-icons/hi'
 
 const Prestations: React.FC = () => {
   const heroRef = useRef(null)
   const prestationsOFRef = useRef(null)
   const prestationsEntreprisesRef = useRef(null)
-  const processusRef = useRef(null)
 
   const isHeroInView = useInView(heroRef, { once: true, margin: "-100px" })
   const isPrestationsOFInView = useInView(prestationsOFRef, { once: true, margin: "-100px" })
   const isPrestationsEntreprisesInView = useInView(prestationsEntreprisesRef, { once: true, margin: "-100px" })
-  const isProcessusInView = useInView(processusRef, { once: true, margin: "-100px" })
 
   const prestationsOF = [
     {
@@ -101,48 +106,55 @@ const Prestations: React.FC = () => {
     }
   ]
 
+  // Données du processus avec jauges progressives
   const processusSteps = [
     {
-      step: "1",
+      step: 1,
       title: "Diagnostic gratuit",
-      description: "Appel de 30 minutes pour comprendre vos besoins et objectifs",
-      icon: HiOutlineClipboardList,
-      duration: "30min"
+      description: "Analyse approfondie de vos besoins, de votre secteur et de vos objectifs. Nous définissons ensemble la stratégie optimale pour votre projet.",
+      icon: HiOutlineSearchCircle,
+      duration: "30 minutes",
+      progress: 100
     },
     {
-      step: "2", 
+      step: 2,
       title: "Proposition personnalisée",
-      description: "Nous vous envoyons un devis détaillé adapté à votre projet",
-      icon: HiOutlineLightningBolt,
-      duration: "48h"
+      description: "Élaboration d'un devis détaillé avec timeline précise, livrables définis et recommandations adaptées à votre budget.",
+      icon: HiOutlineDocumentText,
+      duration: "48 heures",
+      progress: 85
     },
     {
-      step: "3",
+      step: 3,
       title: "Validation et planning",
-      description: "Signature du contrat et planification des étapes de réalisation",
-      icon: HiOutlineCheckCircle,
-      duration: "1 semaine"
+      description: "Finalisation des détails, signature du contrat et planification des étapes avec points de validation réguliers.",
+      icon: HiOutlineCheckBadge,
+      duration: "1 semaine",
+      progress: 95
     },
     {
-      step: "4",
+      step: 4,
       title: "Exécution avec suivi",
-      description: "Réalisation de votre projet avec des points réguliers",
-      icon: HiOutlineCog,
-      duration: "Selon projet"
+      description: "Mise en œuvre de votre projet avec reporting hebdomadaire, ajustements en temps réel et communication transparente.",
+      icon: HiOutlinePlay,
+      duration: "Variable",
+      progress: 75
     },
     {
-      step: "5",
+      step: 5,
       title: "Livraison et formation",
-      description: "Livraison finale avec formation sur les outils mis en place",
-      icon: HiOutlineGift,
-      duration: "1 journée"
+      description: "Remise des livrables, formation complète aux outils et processus, documentation technique et guide utilisateur.",
+      icon: HiOutlineTruck,
+      duration: "1-2 semaines",
+      progress: 90
     },
     {
-      step: "6",
+      step: 6,
       title: "Support post-livraison",
-      description: "Accompagnement et support selon votre pack choisi",
+      description: "Accompagnement personnalisé, maintenance préventive, mise à jour et optimisations continues selon vos besoins.",
       icon: HiOutlineSupport,
-      duration: "6-12 mois"
+      duration: "6-12 mois",
+      progress: 80
     }
   ]
 
@@ -353,97 +365,12 @@ const Prestations: React.FC = () => {
         </div>
       </section>
 
-      {/* Processus Section */}
-      <section ref={processusRef} className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isProcessusInView ? "visible" : "hidden"}
-            className="text-center mb-16"
-          >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Notre processus d'accompagnement
-            </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              6 étapes pour garantir le succès de votre projet
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isProcessusInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {processusSteps.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="card-standard text-center group relative"
-              >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white text-2xl font-bold group-hover:scale-110 transition-transform duration-300">
-                  {step.step}
-                </div>
-                
-                <step.icon className="w-12 h-12 mx-auto mb-4 text-gray-400 group-hover:text-amber-500 transition-colors duration-300" />
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {step.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {step.description}
-                </p>
-                
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-sm font-medium">
-                  <HiOutlineClock className="w-4 h-4 mr-1" />
-                  {step.duration}
-                </div>
-
-                {index < processusSteps.length - 1 && (
-                  <div className="hidden lg:block absolute -right-4 top-1/2 transform -translate-y-1/2 text-gray-300">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate={isProcessusInView ? "visible" : "hidden"}
-            className="text-center mt-16"
-          >
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Prêt à démarrer votre projet ?
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Commençons par un diagnostic gratuit de 30 minutes pour comprendre vos besoins et vous proposer la solution la plus adaptée.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/contact"
-                  className="btn-primary inline-flex items-center justify-center"
-                >
-                  Planifier mon diagnostic gratuit
-                </Link>
-                <Link
-                  to="/contact"
-                  className="bg-white border-2 border-amber-500 text-amber-600 px-8 py-4 rounded-full font-semibold hover:bg-amber-50 transition-all duration-300 inline-flex items-center justify-center"
-                >
-                  Poser une question
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                      {/* Processus Section avec ProgressiveSteps */}
+        <ProgressiveSteps 
+          steps={processusSteps}
+          title="Notre processus d'accompagnement"
+          subtitle="6 étapes pour garantir le succès de votre projet"
+        />
     </div>
   )
 }

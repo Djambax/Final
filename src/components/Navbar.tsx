@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
+import { HiOutlineMenu, HiOutlineX, HiOutlineShoppingBag } from 'react-icons/hi'
 
 // Icônes stylées
 const HomeIcon = () => (
@@ -91,10 +91,10 @@ const Navbar: React.FC<NavbarProps> = () => {
             className="flex-shrink-0"
           >
             <Link to="/" className="text-lg sm:text-xl lg:text-2xl font-black tracking-tight">
-              <span className="bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">
+              <span className="text-black">
                 NOVA
               </span>
-              <span className="ml-1 bg-gradient-to-r from-gray-700 to-gray-500 bg-clip-text text-transparent">
+              <span className="ml-1 gradient-text" data-text="IMPÉRIA">
                 IMPÉRIA
               </span>
             </Link>
@@ -113,44 +113,76 @@ const Navbar: React.FC<NavbarProps> = () => {
                   to={item.path}
                   className={`group relative flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
                     isActiveItem(item.path)
-                      ? 'text-white bg-gradient-to-r from-black to-gray-800 shadow-lg'
-                      : 'text-gray-700 hover:text-black hover:bg-gray-100'
+                      ? 'text-black bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg'
+                      : 'text-gray-700 hover:text-black hover:bg-yellow-50'
                   }`}
                 >
                   {/* Icône avec animation */}
                   <motion.div
-                    className={`transition-all duration-300 ${
-                      isActiveItem(item.path) ? 'text-white' : 'text-gray-500 group-hover:text-black'
-                    }`}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    {item.icon}
+                    <item.icon className={`w-4 h-4 ${
+                      isActiveItem(item.path) ? 'text-black' : 'text-gray-500 group-hover:text-yellow-600'
+                    }`} />
                   </motion.div>
                   
-                  {/* Texte */}
-                  <span className="whitespace-nowrap">{item.label}</span>
-
-                  {/* Effet de hover - bulle */}
-                  {!isActiveItem(item.path) && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-gray-200/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      whileHover={{ scale: 1.02 }}
-                    />
-                  )}
-
-                  {/* Indicateur actif */}
-                  {isActiveItem(item.path) && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-black to-gray-800 rounded-xl shadow-lg"
-                      style={{ zIndex: -1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
+                  <span className="relative">
+                    {item.label}
+                    {/* Effet de soulignement animé */}
+                    {isActiveItem(item.path) && (
+                      <motion.div
+                        layoutId="navbar-underline"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black rounded-full"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </span>
                 </Link>
               </motion.div>
             ))}
+          </div>
+
+          {/* Boutons d'action */}
+          <div className="hidden lg:flex items-center space-x-3">
+            
+            {/* Se connecter */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-gray-700 hover:text-yellow-600 font-semibold text-sm transition-all duration-300 px-4 py-2 rounded-lg hover:bg-yellow-50"
+            >
+              Se connecter
+            </motion.button>
+
+            {/* Bouton Prestations premium */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/prestations"
+                className="btn-primary text-sm px-6 py-3"
+              >
+                Prestations
+              </Link>
+            </motion.div>
+
+            {/* Panier avec compteur */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative text-gray-700 hover:text-yellow-600 font-semibold text-sm transition-all duration-300 px-4 py-2 rounded-lg hover:bg-yellow-50"
+            >
+              <div className="flex items-center space-x-2">
+                <HiOutlineShoppingBag className="w-5 h-5" />
+                <span>Panier</span>
+                {/* Badge compteur */}
+                <span className="absolute -top-1 -right-1 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  0
+                </span>
+              </div>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
