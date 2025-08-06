@@ -269,159 +269,526 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Formations Preview Section */}
-      <section ref={formationsRef} className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Formations Preview Section - PREMIUM REDESIGN */}
+      <section ref={formationsRef} className="relative py-32 overflow-hidden">
+        {/* Background avec image et overlay */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-fixed"
+            style={{
+              backgroundImage: `url('/shutterstock_2287752905.jpg')`,
+            }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/70 to-gray-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/20 via-transparent to-yellow-900/20"></div>
+        </div>
+
+        {/* Particules flottantes animées */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-yellow-400/60 rounded-full"
+              animate={{
+                x: [0, 100, 0],
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + i,
+                repeat: Infinity,
+                delay: i * 0.8,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${10 + i * 12}%`,
+                top: `${20 + (i % 3) * 30}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isFormationsInView ? "visible" : "hidden"}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Nos domaines d'<span className="gradient-text" data-text="expertise">expertise</span>
+            <motion.div
+              variants={itemVariants}
+              className="inline-block"
+            >
+              <span className="inline-block px-4 py-2 bg-yellow-500/20 text-yellow-400 rounded-full text-sm font-semibold mb-6 border border-yellow-500/30">
+                ⭐ NOS EXPERTISES
+              </span>
+            </motion.div>
+            
+            <motion.h2 
+              variants={itemVariants} 
+              className="text-4xl md:text-6xl font-black text-white mb-8"
+            >
+              Domaines d'<span className="gradient-text" data-text="Excellence">Excellence</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des formations d'excellence pour développer vos compétences entrepreneuriales
+            
+            <motion.p 
+              variants={itemVariants} 
+              className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            >
+              Des formations premium qui transforment vos compétences en véritables atouts concurrentiels
             </motion.p>
           </motion.div>
 
+          {/* NOUVELLES CARDS PREMIUM */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isFormationsInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
           >
             {formations.map((formation, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="card-premium text-center group cursor-pointer"
+                whileHover={{ 
+                  y: -15, 
+                  scale: 1.02,
+                  rotateY: 2,
+                  rotateX: 2,
+                }}
+                className="group relative overflow-hidden rounded-3xl cursor-pointer h-80"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px'
+                }}
               >
-                <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${
-                  formation.color === 'blue' ? 'from-blue-500 to-blue-600' :
-                  formation.color === 'purple' ? 'from-purple-500 to-purple-600' :
-                  formation.color === 'indigo' ? 'from-indigo-500 to-indigo-600' :
-                  'from-yellow-500 to-yellow-600'
-                } flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                  <formation.icon className="w-8 h-8 text-white" />
+                {/* Image de fond spécifique */}
+                <div className="absolute inset-0">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{
+                      backgroundImage: `url('/shutterstock_${
+                        index === 0 ? '2598931365' : 
+                        index === 1 ? '2605610799' : 
+                        index === 2 ? '2589155169' : 
+                        '2574472231'
+                      }.jpg')`,
+                    }}
+                  ></div>
+                  
+                  {/* Overlay gradient animé */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70 group-hover:from-black/40 group-hover:to-black/60 transition-all duration-500"></div>
+                  
+                  {/* Overlay couleur spécifique */}
+                  <div className={`absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500 ${
+                    formation.color === 'blue' ? 'bg-blue-500' :
+                    formation.color === 'purple' ? 'bg-purple-500' :
+                    formation.color === 'indigo' ? 'bg-indigo-500' :
+                    'bg-yellow-500'
+                  }`}></div>
                 </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors duration-300">
-                  {formation.title}
-                </h3>
-                
-                <p className="text-gray-600 leading-relaxed">
-                  {formation.description}
-                </p>
+
+                {/* Contenu de la card */}
+                <div className="relative z-20 h-full flex flex-col justify-between p-8">
+                  {/* Header avec icône */}
+                  <div className="flex items-start justify-between">
+                    <motion.div
+                      className={`w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${
+                        formation.color === 'blue' ? 'bg-blue-500/20 border border-blue-400/30' :
+                        formation.color === 'purple' ? 'bg-purple-500/20 border border-purple-400/30' :
+                        formation.color === 'indigo' ? 'bg-indigo-500/20 border border-indigo-400/30' :
+                        'bg-yellow-500/20 border border-yellow-400/30'
+                      }`}
+                      whileHover={{ rotate: 5 }}
+                    >
+                      <formation.icon className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    {/* Badge expertise */}
+                    <motion.div
+                      className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 + 0.3 }}
+                    >
+                      <span className="text-yellow-400 text-xs font-semibold">PREMIUM</span>
+                    </motion.div>
+                  </div>
+
+                  {/* Contenu principal */}
+                  <div className="space-y-4">
+                    <motion.h3 
+                      className="text-2xl md:text-3xl font-black text-white group-hover:text-yellow-400 transition-colors duration-300"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {formation.title}
+                    </motion.h3>
+                    
+                    <motion.p 
+                      className="text-gray-300 text-lg leading-relaxed group-hover:text-white transition-colors duration-300"
+                      initial={{ opacity: 0.8 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {formation.description}
+                    </motion.p>
+
+                    {/* CTA avec effet premium */}
+                    <motion.div
+                      className="flex items-center space-x-2 text-yellow-400 font-semibold group-hover:text-yellow-300 transition-colors duration-300"
+                      whileHover={{ x: 10 }}
+                    >
+                      <span>Explorer cette expertise</span>
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Effet de brillance au hover */}
+                <motion.div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(45deg, transparent, rgba(251, 191, 36, 0.3), transparent)`,
+                    transform: 'translateX(-100%)',
+                  }}
+                  whileHover={{
+                    transform: 'translateX(100%)',
+                    transition: { duration: 0.6 }
+                  }}
+                />
+
+                {/* Bordure animée */}
+                <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-yellow-400/30 transition-colors duration-500"></div>
               </motion.div>
             ))}
           </motion.div>
 
+          {/* CTA Section Premium */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate={isFormationsInView ? "visible" : "hidden"}
             className="text-center"
           >
-            <Link
-              to="/formations"
-              className="btn-primary inline-flex items-center text-lg"
-            >
-              Voir toutes nos formations
-            </Link>
+            <div className="relative inline-block">
+              <motion.div
+                className="absolute inset-0 bg-yellow-400/20 blur-xl rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              <Link
+                to="/formations"
+                className="relative btn-primary text-xl px-12 py-6 inline-flex items-center space-x-3"
+              >
+                <span>🚀 Découvrir toutes nos formations</span>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Prestations Preview Section */}
-      <section ref={prestationsRef} className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Prestations Preview Section - ULTRA PREMIUM */}
+      <section ref={prestationsRef} className="relative py-32 overflow-hidden">
+        {/* Background gradient ultra premium */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-yellow-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-yellow-100/30 via-transparent to-yellow-200/20"></div>
+          
+          {/* Pattern géométrique animé */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                radial-gradient(circle at 25% 25%, #F59E0B 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #F59E0B 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px, 40px 40px'
+            }}></div>
+          </div>
+        </div>
+
+        {/* Forme géométrique flottante */}
+        <motion.div
+          className="absolute top-20 right-20 w-64 h-64 opacity-10"
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ 
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full blur-3xl"></div>
+        </motion.div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isPrestationsInView ? "visible" : "hidden"}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Nos <span className="gradient-text" data-text="solutions">solutions</span>
+            <motion.div
+              variants={itemVariants}
+              className="inline-block"
+            >
+              <span className="inline-block px-4 py-2 bg-yellow-500 text-black rounded-full text-sm font-bold mb-6 shadow-lg">
+                💼 NOS SOLUTIONS
+              </span>
+            </motion.div>
+
+            <motion.h2 
+              variants={itemVariants} 
+              className="text-4xl md:text-6xl font-black text-gray-900 mb-8"
+            >
+              Solutions <span className="gradient-text" data-text="Premium">Premium</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des packs complets pour tous vos besoins d'accompagnement
+            
+            <motion.p 
+              variants={itemVariants} 
+              className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed"
+            >
+              Des packs exclusifs conçus pour propulser votre entreprise vers l'excellence
             </motion.p>
           </motion.div>
 
+          {/* CARDS SOLUTIONS ULTRA PREMIUM */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isPrestationsInView ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16"
           >
             {prestations.map((prestation, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ 
-                  y: -10, 
-                  scale: 1.03,
-                  rotateY: 5,
-                  boxShadow: "0 25px 50px rgba(251, 191, 36, 0.2)"
+                  y: -20, 
+                  scale: 1.05,
+                  rotateY: index === 1 ? 0 : (index === 0 ? -5 : 5),
+                  rotateX: 5,
                 }}
-                className={`relative text-center group cursor-pointer transition-all duration-500 ${
-                  prestation.popular ? 'card-premium ring-2 ring-yellow-400 transform scale-105' : 'card-standard'
+                className={`group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-700 ${
+                  prestation.popular 
+                    ? 'transform scale-110 z-10' 
+                    : 'hover:z-20'
                 }`}
                 style={{
-                  transformStyle: 'preserve-3d'
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px',
+                  height: prestation.popular ? '480px' : '450px'
                 }}
               >
-                {prestation.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg">
-                      ⭐ Populaire
-                    </span>
-                  </div>
-                )}
-                
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-yellow-600 transition-colors duration-300">
-                  {prestation.title}
-                </h3>
-                <div className="text-3xl font-bold mb-6">
-                  <span className="gradient-text" data-text={prestation.price}>{prestation.price}</span>
-                </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {prestation.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-gray-600">
-                      <HiOutlineCheckCircle className="w-5 h-5 text-yellow-500 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <button className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
+                {/* Background premium avec gradient */}
+                <div className={`absolute inset-0 ${
                   prestation.popular
-                    ? 'btn-primary'
-                    : 'btn-secondary'
-                }`}>
-                  En savoir plus
-                </button>
+                    ? 'bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600'
+                    : index === 0
+                    ? 'bg-gradient-to-br from-blue-50 via-white to-blue-100'
+                    : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
+                }`}></div>
+
+                {/* Effet de brillance sur hover */}
+                <motion.div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(135deg, transparent, rgba(251, 191, 36, 0.4), transparent)`,
+                  }}
+                  whileHover={{
+                    background: [
+                      'linear-gradient(135deg, transparent, rgba(251, 191, 36, 0.4), transparent)',
+                      'linear-gradient(315deg, transparent, rgba(251, 191, 36, 0.4), transparent)',
+                      'linear-gradient(135deg, transparent, rgba(251, 191, 36, 0.4), transparent)'
+                    ],
+                    transition: { duration: 2, repeat: Infinity }
+                  }}
+                />
+
+                {/* Badge populaire premium */}
+                {prestation.popular && (
+                  <motion.div
+                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20"
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 2, 0, -2, 0]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="bg-white text-black px-6 py-2 rounded-full text-sm font-black shadow-xl border-2 border-yellow-300">
+                      👑 PLUS POPULAIRE
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Contenu de la card */}
+                <div className="relative z-10 h-full flex flex-col justify-between p-8">
+                  {/* Header */}
+                  <div className="text-center">
+                    <motion.h3 
+                      className={`text-2xl md:text-3xl font-black mb-4 ${
+                        prestation.popular ? 'text-white' : 'text-gray-900'
+                      } group-hover:scale-105 transition-transform duration-300`}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {prestation.title}
+                    </motion.h3>
+                    
+                    <motion.div 
+                      className={`text-4xl md:text-5xl font-black mb-8 ${
+                        prestation.popular ? 'text-white' : 'text-gray-900'
+                      }`}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      {prestation.price}
+                    </motion.div>
+                  </div>
+
+                  {/* Features avec animations */}
+                  <div className="space-y-4 mb-8">
+                    {prestation.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={featureIndex}
+                        className="flex items-center space-x-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
+                        whileHover={{ x: 10, scale: 1.02 }}
+                      >
+                        <motion.div
+                          className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                            prestation.popular 
+                              ? 'bg-white/20 text-white' 
+                              : 'bg-yellow-500 text-white'
+                          }`}
+                          whileHover={{ scale: 1.2, rotate: 180 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          ✓
+                        </motion.div>
+                        <span className={`font-medium ${
+                          prestation.popular ? 'text-white/90' : 'text-gray-700'
+                        }`}>
+                          {feature}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* CTA Button ultra premium */}
+                  <motion.button
+                    className={`w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
+                      prestation.popular
+                        ? 'bg-white text-yellow-600 hover:bg-gray-100'
+                        : 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Effet de shine sur le bouton */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    
+                    <span className="relative z-10">
+                      {prestation.popular ? '🚀 Commencer maintenant' : '💫 Découvrir'}
+                    </span>
+                  </motion.button>
+                </div>
+
+                {/* Bordure animée */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl border-2 border-transparent"
+                  whileHover={{
+                    borderColor: prestation.popular ? 'rgba(255,255,255,0.5)' : 'rgba(251, 191, 36, 0.5)',
+                    transition: { duration: 0.3 }
+                  }}
+                />
+
+                {/* Particules flottantes au hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-yellow-400 rounded-full"
+                      style={{
+                        left: `${20 + i * 15}%`,
+                        top: `${30 + i * 10}%`,
+                      }}
+                      animate={{
+                        y: [0, -20, 0],
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2 + i * 0.5,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                      }}
+                    />
+                  ))}
+                </div>
               </motion.div>
             ))}
           </motion.div>
 
+          {/* CTA Section Ultra Premium */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate={isPrestationsInView ? "visible" : "hidden"}
             className="text-center"
           >
-            <Link
-              to="/prestations"
-              className="btn-primary inline-flex items-center text-lg"
-            >
-              Découvrir tous nos packs
-            </Link>
+            <div className="relative inline-block">
+              {/* Effet de glow animé */}
+              <motion.div
+                className="absolute inset-0 bg-yellow-400/20 blur-2xl rounded-full"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              <Link
+                to="/prestations"
+                className="relative btn-primary text-xl px-16 py-6 inline-flex items-center space-x-4 group"
+              >
+                <span>🎯 Explorer toutes nos solutions</span>
+                <motion.div
+                  animate={{ x: [0, 10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="group-hover:translate-x-2 transition-transform duration-300"
+                >
+                  →
+                </motion.div>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
