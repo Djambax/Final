@@ -29,7 +29,7 @@ const Formations: React.FC = () => {
       title: "Business & Entrepreneuriat",
       icon: HiOutlineChartBar,
       color: "from-blue-500 to-blue-600",
-      image: "/src/assets/shutterstock_2598931365.jpg",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Création d'entreprise : de l'idée au lancement",
         "Construire un business model et business plan efficace", 
@@ -44,7 +44,7 @@ const Formations: React.FC = () => {
       title: "Marketing & Communication",
       icon: HiOutlineSpeakerphone,
       color: "from-purple-500 to-purple-600",
-      image: "/src/assets/shutterstock_2605610799.jpg",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Marketing digital (réseaux sociaux, SEO, publicité en ligne)",
         "Communication de marque et identité visuelle",
@@ -60,7 +60,7 @@ const Formations: React.FC = () => {
       title: "Vente & Animation commerciale",
       icon: HiOutlineShoppingCart,
       color: "from-green-500 to-green-600",
-      image: "/src/assets/shutterstock_2589155169.jpg",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Techniques de vente et négociation client",
         "Animation de point de vente & merchandising", 
@@ -75,7 +75,7 @@ const Formations: React.FC = () => {
       title: "Gestion d'entreprise & Administrative",
       icon: HiOutlineCalculator,
       color: "from-indigo-500 to-indigo-600",
-      image: "/src/assets/shutterstock_2543158437.jpg",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Bases de la comptabilité pour non-comptables",
         "Organisation administrative de l'entreprise",
@@ -104,7 +104,7 @@ const Formations: React.FC = () => {
       title: "Formations sur mesure & accompagnement",
       icon: HiOutlineCog,
       color: "from-gray-500 to-gray-600",
-      image: "/src/assets/shutterstock_2622093339.jpg",
+      image: "/src/assets/shutterstock_2574472231.jpg",
       modules: [
         "Diagnostic des besoins de montée en compétences",
         "Élaboration programme individualisé",
