@@ -369,9 +369,9 @@ const Home: React.FC = () => {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{
                       backgroundImage: `url('/shutterstock_${
-                        index === 0 ? '2598931365' : 
-                        index === 1 ? '2605610799' : 
-                        index === 2 ? '2589155169' : 
+                        index === 0 ? '2574472231' : 
+                        index === 1 ? '2574472231' : 
+                        index === 2 ? '2574472231' : 
                         '2574472231'
                       }.jpg')`,
                     }}

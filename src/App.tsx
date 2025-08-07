@@ -6,10 +6,12 @@ import Formations from './pages/Formations'
 import Prestations from './pages/Prestations'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import { builder } from '@builder.io/react'
+
 import './index.css' // ← Ou ici
 
 
-
+builder.init('1addf450f0ab4a609bd9df8ccc6a4616')
 function App() {
   return (
     <div className="min-h-screen bg-white">
